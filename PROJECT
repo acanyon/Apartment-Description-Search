@@ -1,0 +1,51 @@
+Welcome to ApartmentList.com code test!
+
+For an apartment search we need to generate description snippets that
+match the search query. For example, lets assume we have the apartment
+with the following description:
+
+"Our luxury loft-style apartments were constructed as condominiums, so
+your new residence will have: Solid floors and walls (this will be the
+quietest apartment you've EVER lived in); Premium stainless steel
+designer appliances; Distinctive accent walls and hardwood flooring; A
+kitchen that most chefs would drool over with easy to clean gas stove
+and countertops; Walk in closets with built in storage; Full size
+washer and dryer in each apartment home. In addition, all residents
+will enjoy use of our top-notch amenities, including reserved parking,
+cutting-edge fitness center, wireless internet cafe/business center,
+and rooftop lounge to soak up the sun!"
+
+Lets consider a user searching for "designer kitchen". In this case,
+the ideal snippet would be something like this:
+
+"Premium stainless steel designer appliances; Distinctive accent walls
+and hardwood flooring; A kitchen that most chefs would drool over with
+easy to clean gas stove and countertops;"
+
+
+For this question you will write a function that finds the most
+relevant snippet for a document. It doesn't have to be ideal, but the
+more accurate it is the better. We understand that definition of
+"relevant snippet" is open ended, you need to decide what matters to
+you, defend you choices, and provide a clean implementation.
+
+The solution can be in any language, but Ruby is preferred. Attach
+your native source files, together with README, tests, and any other
+support files the code needs. Please make sure to write the code that
+you would be proud of committing to source control system in
+professional environment.
+
+The function should have a signature similar to the following:
+
+##
+# args:
+# document - string containing apartment description
+# query - user search query string
+#
+# returns:
+# the most relevant snippet
+
+def generate_snippet(document, query)
+...
+end
+
