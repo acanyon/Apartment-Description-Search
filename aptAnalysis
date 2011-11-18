@@ -9,8 +9,8 @@ if len(sys.argv) <= 1 :
     print "Please supply file apt description input"
     exit()
 
-search = Sentence()
 searchTerms = raw_input("search :  ")
+search = Sentence(searchTerms)
 
 print searchTerms
 
