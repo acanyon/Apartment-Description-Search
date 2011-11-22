@@ -16,5 +16,6 @@ for i in range(1, len(sys.argv)) :
     descFile = open(sys.argv[i])
 
     for desc in descFile.readlines() :
-        generate_snippet(desc, searchTerms)
+        print generate_snippet(desc, searchTerms)
+        
 
