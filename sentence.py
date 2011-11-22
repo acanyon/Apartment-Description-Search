@@ -3,6 +3,7 @@ import string
 import nltk
 from nltk.stem.wordnet import WordNetLemmatizer 
 
+
 class AptDesc :
     
     origDesc = ""
@@ -18,16 +19,16 @@ class AptDesc :
         endToken = ['.', '!', ';', '?']
         wordParts = []
         phrase = ""
-      
-        words = nltk.word_tokenize(self.origDesc)
-         
-        for w in words :
-            if w in endToken :
-                phrase = phrase + w
+#      
+#        words = nltk.word_tokenize(self.origDesc)
+#         
+        for char in self.origDesc :
+            if char in endToken :
+                phrase = phrase + char
                 wordParts.append(Sentence(phrase))
                 phrase = ""
             else :
-                phrase = phrase + " " + w
+                phrase = phrase + char
 
         self.sentences = wordParts
         return 
@@ -43,31 +44,42 @@ class AptDesc :
             
         ave = ave / len(rankings)
         
+        if ave == 0.0 :
+            print "No match found."
+            return 
+        
         segment = []
         out = False
         lastIndex = -1
+        cutIndex = -1
         for i, (sent, rank) in enumerate(rankings) :
-            print rank, ave
-            if rank >= ave or out:
+            if rank > ave or out:
                 out = True
                 segment.append((sent, rank))
-                if rank >= ave : lastIndex = i
-                print i
-                
-        print i
-                
-        print segment[:lastIndex]
-                    
-        
-        
+                if rank > ave : lastIndex = i
+            else :
+                cutIndex = i
+
+        segment = segment[:lastIndex - cutIndex ]
+        section = ""
+        for text, rank in segment :
+            section = section + " " + text
+            
+        print section
+        return section
             
   
 class Text :
     "basic text functions. Inherited by Sentence and SearchTerms"
     
     def __init__(self, text) : 
+        endToken = ['.', '!', ';', '?', '-', '/']
+        
         self.origText = text.strip()
+        
         text = text.lower().strip()
+        for char in endToken :
+            text = text.replace(char, " ")
         token = nltk.word_tokenize(text)
         
         self.tokenized = []
